@@ -15,7 +15,6 @@
         "gatsby-plugin-styled-components": "^3.0.7",
         "gatsby-plugin-typescript": "^2.0.15",
         "gatsby-source-graphql": "^2.0.18",
-        "gatsby-transformer-sharp": "^2.1.21",
         "polished": "^3.4.0",
         "react": "^16.8.6",
         "react-dom": "^16.8.6",
