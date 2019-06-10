@@ -1,0 +1,14 @@
+{
+    "extends": [
+        "tslint-config-oberon"
+    ],
+    "linterOptions": {
+        "exclude": [
+            "**/**.js"
+        ]
+    },
+    "rules": {
+        "interface-name": false,
+        "max-line-length": [true, {"limit": 120, "ignore-pattern": "^\\s*(d|points)=\"[A-Za-z.0-9,\\s-]*\"$"}]
+    }
+}
