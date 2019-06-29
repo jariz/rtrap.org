@@ -32,13 +32,13 @@ interface Props {
     data: ChapterButtonFragment;
 }
 
-const Button = styled(Link)<{ tint: string; }>`
+const Button = styled(Link)<{ tint: string; uri: string; }>`
     font-family: "Miedinger-Bold", Helvetica, sans-serif;
-    font-size: 39px;
+    font-size: ${({ uri }) => uri === 'section/what-is-trap' ? '29px' : '39px'};
+    line-height: ${({ uri }) => uri === 'section/what-is-trap' ? '28px' : '43px'};
     letter-spacing: 0;
     text-align: center;
-    line-height: 43px;
-    width: 33.33%;
+    width: 100%;
     position: relative;
     height: 135px;
     display: inline-flex;
@@ -49,6 +49,15 @@ const Button = styled(Link)<{ tint: string; }>`
     overflow: hidden;
     padding: 16px;
     box-shadow: 0 0 7px rgba(0,0,0,0.27);
+    cursor: pointer;
+    
+    @media screen and (min-width: 400px) {
+        width: calc(50% - 16px);
+    }
+    
+    @media screen and (min-width: 900px) {
+        width: calc(33.33% - 16px);
+    }
     
     span {
         position: relative;
@@ -60,11 +69,15 @@ const ChapterButton: FC<Props> = ({ data: { title, chapterBackground, tint, uri 
     const bg = chapterBackground && chapterBackground[0];
     const tintHex = (tint && tint.hex) || 'red';
     return (
-        <Button tint={tintHex} to={uri || ''}>
-            {bg && tint && (
+        <Button
+            tint={tintHex}
+            to={uri || ''}
+            uri={uri || ''}
+            smooth
+        >
+            {bg && (
                 <ChapterBackground
                     url={bg.url || 'https://via.placeholder.com/150'}
-                    tint={tintHex}
                 />
             )}
             <span>{title}</span>

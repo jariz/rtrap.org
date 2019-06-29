@@ -1,4 +1,4 @@
-import styled, { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
 import React, { Fragment } from 'react';
 import { Helmet } from 'react-helmet';
 
@@ -21,10 +21,8 @@ export const wrapPageElement = ({ element }) => (
             />
         </Helmet>
         <GlobalStyling />
-        
-        <Layout>
-            {element}
-        </Layout>
+
+        {element}
     </Fragment>
 );
 
@@ -34,6 +32,8 @@ const GlobalStyling = createGlobalStyle`
         font-family: "Fira Sans", sans-serif;
         color: #FFF;
         font-size: 14px;
+        margin: 0;
+        padding: 0;
     }
     
     * {
@@ -81,12 +81,4 @@ const GlobalStyling = createGlobalStyle`
       url('${require('./src/fonts/398D16_0_0.ttf')}') format('truetype');
     }
      
-`;
-
-const Layout = styled.main`
-    max-width: 1260px;
-    margin: 40px auto;
-    padding: 0 30px;
-    display: flex;
-    flex-direction: row;
 `;
