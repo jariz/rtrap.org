@@ -71,6 +71,9 @@ const ParentChapterHeader = styled.h1`
     background: #4960bc;
     line-height: 55px;
     margin: 0;
+    position: sticky;
+    top: 0;
+    z-index: 1;
 `;
 
 const StyledLayout = styled(Layout)`
