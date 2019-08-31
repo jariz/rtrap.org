@@ -1,6 +1,6 @@
 import { graphql } from 'gatsby';
 import styled from 'styled-components';
-import ChapterBackground from '../atoms/ChapterBackground';
+import ChapterBackground, { calculateFocalPoint } from '../atoms/ChapterBackground';
 import {
     ChapterHeaderFragment,
     ChapterHeaderFragment_chapterAuthor,
@@ -20,7 +20,15 @@ export const query = graphql`
             hex
         }
         chapterBackground {
-            url(transform: articleImage)
+            bgUrl: url
+
+            width
+            height
+
+            focalPoint {
+                x
+                y
+            }
         }
         chapterAuthor {
             ... on Craft_ChapterAuthor {
@@ -32,6 +40,9 @@ export const query = graphql`
                 redditHandle
             }
         }
+        parent {
+            slug
+        }
     }
 `;
 
@@ -39,9 +50,12 @@ interface Props {
     data: ChapterHeaderFragment;
 }
 
-const ChapterHeader: FC<Props> = ({ data: { chapterBackground, tint, title, uri, chapterAuthor, editors, slug } }) => {
+const ChapterHeader: FC<Props> = ({
+    data: { chapterBackground, tint, title, uri, chapterAuthor, editors, slug, parent },
+}) => {
     const bg = chapterBackground && chapterBackground[0];
     const tintHex = (tint && tint.hex) || 'red';
+    const parentSlug = (parent && parent.slug) || '';
 
     const renderAuthors = (label: string, authors: Array<ChapterHeaderFragment_chapterAuthor | null> | null) =>
         authors &&
@@ -75,7 +89,13 @@ const ChapterHeader: FC<Props> = ({ data: { chapterBackground, tint, title, uri,
     return (
         <Element name={uri || ''} id={slug}>
             <Container tint={tintHex}>
-                {bg && <ChapterBackground url={bg.url || 'https://via.placeholder.com/150'} />}
+                {bg && (
+                    <ChapterBackground
+                        url={bg.bgUrl || 'https://via.placeholder.com/150'}
+                        isAlbumCovers={parentSlug !== 'essential-artists'}
+                        focalPoint={calculateFocalPoint(bg)}
+                    />
+                )}
 
                 <HeaderLayout>
                     <Title>{title}</Title>
@@ -97,10 +117,21 @@ const Container = styled.section<{ tint: string }>`
 
 const Title = styled.h1`
     font-family: 'Miedinger-Bold', Helvetica, sans-serif;
-    font-size: 61px;
+    font-size: 55px;
     color: #fff;
-    line-height: 65px;
+    line-height: 1.1;
+    max-width: 50%;
     margin: 0;
+
+    @media screen and (max-width: 1200px) {
+        max-width: 550px;
+        font-size: 50px;
+    }
+
+    @media screen and (max-width: 900px) {
+        max-width: 450px;
+        font-size: 40px;
+    }
 `;
 
 const Metas = styled.div`
@@ -131,8 +162,12 @@ const Meta = styled.dl`
 `;
 
 const HeaderLayout = styled(Layout)`
-    margin: 33px auto;
+    margin: 130px auto;
     flex-direction: column !important;
+
+    @media screen and (max-width: 900px) {
+        margin: 66px auto;
+    }
 `;
 
 export default ChapterHeader;

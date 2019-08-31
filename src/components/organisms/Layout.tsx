@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export default styled.main`
-    max-width: 1260px;
+    max-width: 1920px;
     margin: 40px auto;
     padding: 0 30px;
     display: flex;
