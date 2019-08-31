@@ -32,10 +32,10 @@ interface Props {
     data: ChapterButtonFragment;
 }
 
-const Button = styled(Link)<{ tint: string; uri: string; }>`
-    font-family: "Miedinger-Bold", Helvetica, sans-serif;
-    font-size: ${({ uri }) => uri === 'section/what-is-trap' ? '29px' : '39px'};
-    line-height: ${({ uri }) => uri === 'section/what-is-trap' ? '28px' : '43px'};
+const Button = styled(Link)<{ tint: string; uri: string }>`
+    font-family: 'Miedinger-Bold', Helvetica, sans-serif;
+    font-size: ${({ uri }) => (uri === 'section/what-is-trap' ? '29px' : '39px')};
+    line-height: ${({ uri }) => (uri === 'section/what-is-trap' ? '28px' : '43px')};
     letter-spacing: 0;
     text-align: center;
     width: 100%;
@@ -44,21 +44,21 @@ const Button = styled(Link)<{ tint: string; uri: string; }>`
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    background-color: ${({ tint }) => darken(.15, tint)};
+    background-color: ${({ tint }) => darken(0.15, tint)};
     border-radius: 27px;
     overflow: hidden;
     padding: 16px;
-    box-shadow: 0 0 7px rgba(0,0,0,0.27);
+    box-shadow: 0 0 7px rgba(0, 0, 0, 0.27);
     cursor: pointer;
-    
+
     @media screen and (min-width: 400px) {
         width: calc(50% - 16px);
     }
-    
+
     @media screen and (min-width: 900px) {
         width: calc(33.33% - 16px);
     }
-    
+
     span {
         position: relative;
         z-index: 1;
@@ -69,17 +69,8 @@ const ChapterButton: FC<Props> = ({ data: { title, chapterBackground, tint, uri 
     const bg = chapterBackground && chapterBackground[0];
     const tintHex = (tint && tint.hex) || 'red';
     return (
-        <Button
-            tint={tintHex}
-            to={uri || ''}
-            uri={uri || ''}
-            smooth
-        >
-            {bg && (
-                <ChapterBackground
-                    url={bg.url || 'https://via.placeholder.com/150'}
-                />
-            )}
+        <Button tint={tintHex} to={uri || ''} uri={uri || ''} smooth offset={-55}>
+            {bg && <ChapterBackground url={bg.url || 'https://via.placeholder.com/150'} />}
             <span>{title}</span>
         </Button>
     );

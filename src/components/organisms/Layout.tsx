@@ -6,9 +6,9 @@ export default styled.main`
     padding: 0 30px;
     display: flex;
     flex-direction: column;
-    
+
     @media screen and (min-width: 900px) {
         flex-direction: row;
-        padding: 0 50px; 
+        padding: 0 50px;
     }
 `;

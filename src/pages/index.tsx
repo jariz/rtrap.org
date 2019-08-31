@@ -8,10 +8,11 @@ import Chapter from '../components/organisms/Chapter';
 export const query = graphql`
     query IndexQuery {
         craft {
-            intro: entry(type:Intro) {
+            intro: entry(type: Intro) {
                 ...IntroBlockFragment
             }
-            chapters: entries(type: ChapterChapterType, level: 1) { # wtf is this type name lol
+            chapters: entries(type: ChapterChapterType, level: 1) {
+                # wtf is this type name lol
                 id
                 ...ParentChapterButtonFragment
                 ...ChapterFragment
@@ -26,12 +27,13 @@ interface Props {
 
 const IndexPage: FC<Props> = ({ data }) => {
     const intro = data.craft && data.craft.intro;
-    const chapters = data.craft
-        && data.craft.chapters
-        && data.craft.chapters
-            .filter((chapter): chapter is IndexQuery_craft_chapters_Craft_ChapterChapterType =>
+    const chapters =
+        data.craft &&
+        data.craft.chapters &&
+        data.craft.chapters.filter(
+            (chapter): chapter is IndexQuery_craft_chapters_Craft_ChapterChapterType =>
                 !!chapter && chapter.__typename === 'Craft_ChapterChapterType'
-            );
+        );
 
     if (intro && intro.__typename !== 'Craft_Intro') {
         return null;
@@ -39,19 +41,9 @@ const IndexPage: FC<Props> = ({ data }) => {
 
     return (
         <Fragment>
-            {intro && chapters && (
-                <TableOfContents
-                    intro={intro}
-                    chapters={chapters}
-                />
-            )}
+            {intro && chapters && <TableOfContents intro={intro} chapters={chapters} />}
 
-            {chapters && chapters.map(chapter => (
-                <Chapter
-                    key={chapter.id}
-                    data={chapter}
-                />
-            ))}
+            {chapters && chapters.map(chapter => <Chapter key={chapter.id} data={chapter} />)}
         </Fragment>
     );
 };

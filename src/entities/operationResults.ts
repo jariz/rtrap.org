@@ -85,6 +85,7 @@ export interface IndexQuery_craft_chapters_Craft_ChapterChapterType_children_Cra
   tint: IndexQuery_craft_chapters_Craft_ChapterChapterType_children_Craft_ChapterChapterType_tint | null;
   chapterBackground: (IndexQuery_craft_chapters_Craft_ChapterChapterType_children_Craft_ChapterChapterType_chapterBackground | null)[] | null;
   uri: string | null;
+  slug: string;
   chapterAuthor: (IndexQuery_craft_chapters_Craft_ChapterChapterType_children_Craft_ChapterChapterType_chapterAuthor | null)[] | null;
   editors: (IndexQuery_craft_chapters_Craft_ChapterChapterType_children_Craft_ChapterChapterType_editors | null)[] | null;
   level: number | null;
@@ -128,6 +129,7 @@ export interface IndexQuery_craft_chapters_Craft_ChapterChapterType {
   chapterBackground: (IndexQuery_craft_chapters_Craft_ChapterChapterType_chapterBackground | null)[] | null;
   uri: string | null;
   children: (IndexQuery_craft_chapters_Craft_ChapterChapterType_children | null)[] | null;
+  slug: string;
   chapterAuthor: (IndexQuery_craft_chapters_Craft_ChapterChapterType_chapterAuthor | null)[] | null;
   editors: (IndexQuery_craft_chapters_Craft_ChapterChapterType_editors | null)[] | null;
   level: number | null;
@@ -270,6 +272,7 @@ export interface ChapterHeaderFragment {
   __typename: "Craft_ChapterChapterType";
   title: string;
   uri: string | null;
+  slug: string;
   tint: ChapterHeaderFragment_tint | null;
   chapterBackground: (ChapterHeaderFragment_chapterBackground | null)[] | null;
   chapterAuthor: (ChapterHeaderFragment_chapterAuthor | null)[] | null;
@@ -366,6 +369,7 @@ export interface ChapterFragment_children_Craft_ChapterChapterType {
   __typename: "Craft_ChapterChapterType";
   title: string;
   uri: string | null;
+  slug: string;
   tint: ChapterFragment_children_Craft_ChapterChapterType_tint | null;
   chapterBackground: (ChapterFragment_children_Craft_ChapterChapterType_chapterBackground | null)[] | null;
   chapterAuthor: (ChapterFragment_children_Craft_ChapterChapterType_chapterAuthor | null)[] | null;
@@ -380,6 +384,7 @@ export interface ChapterFragment {
   __typename: "Craft_ChapterChapterType";
   title: string;
   uri: string | null;
+  slug: string;
   tint: ChapterFragment_tint | null;
   chapterBackground: (ChapterFragment_chapterBackground | null)[] | null;
   chapterAuthor: (ChapterFragment_chapterAuthor | null)[] | null;
@@ -438,6 +443,7 @@ export interface ChapterContentFragment {
   __typename: "Craft_ChapterChapterType";
   title: string;
   uri: string | null;
+  slug: string;
   tint: ChapterContentFragment_tint | null;
   chapterBackground: (ChapterContentFragment_chapterBackground | null)[] | null;
   chapterAuthor: (ChapterContentFragment_chapterAuthor | null)[] | null;

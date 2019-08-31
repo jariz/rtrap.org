@@ -15,7 +15,7 @@ export const query = graphql`
         }
     }
 
-    fragment ChapterContentFragment on Craft_ChapterChapterType{
+    fragment ChapterContentFragment on Craft_ChapterChapterType {
         ...ChapterHeaderFragment
 
         title
@@ -35,18 +35,22 @@ const Chapter: FC<Props> = ({ data: { contentField, level, children, ...header }
         return (
             <Fragment>
                 <ParentChapterHeader>
-                    <StyledLayout>
-                        {header.title}
-                    </StyledLayout>
+                    <StyledLayout>{header.title}</StyledLayout>
                 </ParentChapterHeader>
-                {children && children.map(child => child && child.__typename === 'Craft_ChapterChapterType' && (
-                    <Chapter
-                        data={{
-                            ...child,
-                            children: null,
-                        }}
-                    />
-                ))}
+                {children &&
+                    children.map(
+                        child =>
+                            child &&
+                            child.__typename === 'Craft_ChapterChapterType' && (
+                                <Chapter
+                                    key={child.uri || ''}
+                                    data={{
+                                        ...child,
+                                        children: null,
+                                    }}
+                                />
+                            )
+                    )}
             </Fragment>
         );
     }

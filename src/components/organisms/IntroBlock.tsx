@@ -19,10 +19,7 @@ interface Props {
 
 export const IntroBlock: FC<Props> = ({ data: { contentField } }) => (
     <Container>
-        <img
-            src={logo}
-            alt="r/trap essentials list"
-        />
+        <img src={logo} alt="r/trap essentials list" />
         {contentField && contentField.content && (
             <CmsContent
                 dangerouslySetInnerHTML={{
@@ -35,12 +32,12 @@ export const IntroBlock: FC<Props> = ({ data: { contentField } }) => (
 
 const Container = styled.div`
     width: 100%;
-    
+
     img {
         margin-bottom: 1em;
     }
-    
+
     @media screen and (min-width: 900px) {
-        width: 33.33%; 
+        width: 33.33%;
     }
 `;
