@@ -5,6 +5,8 @@ import ChapterHeader from '../molecules/ChapterHeader';
 import CmsContent from '../molecules/CmsContent';
 import Layout from './Layout';
 import styled from 'styled-components';
+import Button from '../molecules/Button';
+import TocIcon from '../atoms/TocIcon';
 
 export const query = graphql`
     fragment ChapterFragment on Craft_ChapterChapterType {
@@ -35,7 +37,13 @@ const Chapter: FC<Props> = ({ data: { contentField, level, children, ...header }
         return (
             <Fragment>
                 <ParentChapterHeader>
-                    <StyledLayout>{header.title}</StyledLayout>
+                    <StyledLayout>
+                        {header.title}
+                        <Button to="toc" smooth offset={-50}>
+                            <TocIcon />
+                            Table of contents
+                        </Button>
+                    </StyledLayout>
                 </ParentChapterHeader>
                 {children &&
                     children.map(
@@ -78,10 +86,18 @@ const ParentChapterHeader = styled.h1`
     position: sticky;
     top: 0;
     z-index: 1;
+    
+    @media screen and (max-width: 390px) {
+        font-size: 18px;
+    }
 `;
 
 const StyledLayout = styled(Layout)`
     margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
 `;
 
 export default Chapter;

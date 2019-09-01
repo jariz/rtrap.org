@@ -4,6 +4,7 @@ import { IntroBlock } from './IntroBlock';
 import ChapterButton from '../molecules/ChapterButton';
 import Layout from './Layout';
 import styled from 'styled-components';
+import { Element } from 'react-scroll';
 
 interface Props {
     intro: IntroBlockFragment;
@@ -11,31 +12,37 @@ interface Props {
 }
 
 const TableOfContents: FC<Props> = ({ intro, chapters }) => (
-    <Layout>
-        {intro && <IntroBlock data={intro} />}
-        <Chapters>
-            {chapters.map(
-                chapter =>
-                    chapter &&
-                    chapter.__typename === 'Craft_ChapterChapterType' && (
-                        <Fragment key={chapter.id}>
-                            <ChapterHeader>{chapter.title}</ChapterHeader>
-                            <ChapterButtons>
-                                {chapter.children &&
-                                    chapter.children.map(
-                                        child =>
-                                            child &&
-                                            child.__typename === 'Craft_ChapterChapterType' && (
-                                                <ChapterButton key={child.id} data={child} />
-                                            )
-                                    )}
-                            </ChapterButtons>
-                        </Fragment>
-                    )
-            )}
-        </Chapters>
-    </Layout>
+    <Element name="toc">
+        <StyledLayout>
+            {intro && <IntroBlock data={intro} />}
+            <Chapters>
+                {chapters.map(
+                    chapter =>
+                        chapter &&
+                        chapter.__typename === 'Craft_ChapterChapterType' && (
+                            <Fragment key={chapter.id}>
+                                <ChapterHeader>{chapter.title}</ChapterHeader>
+                                <ChapterButtons>
+                                    {chapter.children &&
+                                        chapter.children.map(
+                                            child =>
+                                                child &&
+                                                child.__typename === 'Craft_ChapterChapterType' && (
+                                                    <ChapterButton key={child.id} data={child} />
+                                                )
+                                        )}
+                                </ChapterButtons>
+                            </Fragment>
+                        )
+                )}
+            </Chapters>
+        </StyledLayout>
+    </Element>
 );
+
+const StyledLayout = styled(Layout)`
+    max-width: 1424px;
+`;
 
 const ChapterButtons = styled.section`
     display: flex;

@@ -132,6 +132,11 @@ const Title = styled.h1`
         max-width: 450px;
         font-size: 40px;
     }
+
+    @media screen and (max-width: 390px) {
+        max-width: 240px;
+        font-size: 28px;
+    }
 `;
 
 const Metas = styled.div`

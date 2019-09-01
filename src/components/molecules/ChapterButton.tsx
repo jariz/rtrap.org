@@ -48,7 +48,7 @@ const getFontSize = (slug: string) => {
         case 'foreword':
             return '29px';
         case 'essential-artists':
-            return '22px';
+            return '20px';
         default:
             return '39px';
     }
@@ -77,12 +77,12 @@ const Button = styled(Link)<{ tint: string; parentSlug: string }>`
         width: calc(50% - 16px);
     }
 
-    @media screen and (min-width: 1040px) {
-        width: calc(25% - 16px);
-    }
-
-    @media screen and (min-width: 12244px) {
+    @media screen and (min-width: 1024px) {
         width: calc(33.33% - 16px);
+    }
+    
+    @media screen and (min-width: 1324px) {
+        width: calc(25% - 16px);
     }
 
     span {
