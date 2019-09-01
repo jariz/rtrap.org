@@ -36,6 +36,10 @@ const albumCovers = css`
     right: -100%;
     transform: rotate(45deg);
     background-repeat: repeat;
+    
+    @media screen and (max-width: 700px) {
+        background-size: 50%;
+    }
 `;
 
 const normal = css`

@@ -39,7 +39,7 @@ const Chapter: FC<Props> = ({ data: { contentField, level, children, ...header }
                 <ParentChapterHeader>
                     <StyledLayout>
                         {header.title}
-                        <Button to="toc" smooth offset={-50}>
+                        <Button to="toc" smooth offset={-25}>
                             <TocIcon />
                             Table of contents
                         </Button>

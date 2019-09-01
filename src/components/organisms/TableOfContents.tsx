@@ -12,32 +12,30 @@ interface Props {
 }
 
 const TableOfContents: FC<Props> = ({ intro, chapters }) => (
-    <Element name="toc">
-        <StyledLayout>
-            {intro && <IntroBlock data={intro} />}
-            <Chapters>
-                {chapters.map(
-                    chapter =>
-                        chapter &&
-                        chapter.__typename === 'Craft_ChapterChapterType' && (
-                            <Fragment key={chapter.id}>
-                                <ChapterHeader>{chapter.title}</ChapterHeader>
-                                <ChapterButtons>
-                                    {chapter.children &&
-                                        chapter.children.map(
-                                            child =>
-                                                child &&
-                                                child.__typename === 'Craft_ChapterChapterType' && (
-                                                    <ChapterButton key={child.id} data={child} />
-                                                )
-                                        )}
-                                </ChapterButtons>
-                            </Fragment>
-                        )
-                )}
-            </Chapters>
-        </StyledLayout>
-    </Element>
+    <StyledLayout>
+        {intro && <IntroBlock data={intro} />}
+        <Chapters name="toc">
+            {chapters.map(
+                chapter =>
+                    chapter &&
+                    chapter.__typename === 'Craft_ChapterChapterType' && (
+                        <Fragment key={chapter.id}>
+                            <ChapterHeader>{chapter.title}</ChapterHeader>
+                            <ChapterButtons>
+                                {chapter.children &&
+                                    chapter.children.map(
+                                        child =>
+                                            child &&
+                                            child.__typename === 'Craft_ChapterChapterType' && (
+                                                <ChapterButton key={child.id} data={child} />
+                                            )
+                                    )}
+                            </ChapterButtons>
+                        </Fragment>
+                    )
+            )}
+        </Chapters>
+    </StyledLayout>
 );
 
 const StyledLayout = styled(Layout)`
@@ -64,7 +62,7 @@ const ChapterHeader = styled.h1`
     }
 `;
 
-const Chapters = styled.div`
+const Chapters = styled(Element)`
     margin-top: 20px;
 
     @media screen and (min-width: 900px) {

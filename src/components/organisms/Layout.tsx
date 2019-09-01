@@ -9,6 +9,6 @@ export default styled.main`
 
     @media screen and (min-width: 900px) {
         flex-direction: row;
-        padding: 0 50px;
+        padding: 0 25px;
     }
 `;

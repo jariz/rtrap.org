@@ -48,7 +48,7 @@ const getFontSize = (slug: string) => {
         case 'foreword':
             return '29px';
         case 'essential-artists':
-            return '20px';
+            return '19px';
         default:
             return '39px';
     }
