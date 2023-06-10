@@ -9,7 +9,7 @@
         "@types/styled-components": "4.1.4",
         "apollo": "^2.13.0",
         "dotenv": "^8.0.0",
-        "gatsby": "^2.8.5",
+        "gatsby": "^4.25.7",
         "gatsby-plugin-manifest": "^2.1.1",
         "gatsby-plugin-react-helmet": "^3.0.12",
         "gatsby-plugin-styled-components": "^3.0.7",
